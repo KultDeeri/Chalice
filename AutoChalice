@@ -1,0 +1,31 @@
+print("Loaded.")
+
+local plr = game.Players.LocalPlayer
+local chr = plr.Character
+local hrp = chr:WaitForChild("HumanoidRootPart")
+local ws = game:GetService("Workspace")
+
+tweentochest = false
+
+function tweento(chest)
+    if tweentochest == false then hrp.CFrame = chest.CFrame end
+    return game:GetService("TweenService"):Create(hrp, TweenInfo.new(1, Enum.EasingStyle.Linear, Enum.EasingDirection.InOut), {CFrame = chest.CFrame }):Play()
+end
+
+repeat
+    task.wait()
+    for i,v in pairs(ws:GetChildren()) do
+    if v.Name == "Chest1" then
+        tweento(v)
+        break
+    end
+    if v.Name == "Chest2" then
+        tweento(v)
+        break
+    end
+    if v.Name == "Chest3" then
+        tweento(v)
+        break
+    end
+end
+until plr.Backpack:FindFirstChild("God's Chalice")
